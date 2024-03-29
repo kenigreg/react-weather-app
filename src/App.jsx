@@ -1,17 +1,17 @@
 import React from 'react'
 import NavBar from './components/NavBar';
-import SearchForm from './components/SearchForm';
+import ProjectPortfolio from './components/ProjectPortfolio';
 import Footer from './components/Footer';
 
 
 function App() {
 
   return (
-    <>
+    <div>
       <NavBar />
-      <SearchForm />
+      <ProjectPortfolio />
       <Footer/>
-    </>
+    </div>
   )
 }
 
