@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import SearchForm from './SearchForm';
+import DisplayData from './DisplayData';
+import { apiKey } from '../API';
 import axios from 'axios';
 
 function ProjectPortfolio() {
@@ -14,9 +16,7 @@ function ProjectPortfolio() {
     const [forecastData, setForecastData] = useState({});
 
 
-    //API Key and Request URLs
-    const apiKey = "f5c996321ad58ab29579b6072757d457";
-
+    //API Request URLs
     const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
 
     const forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${apiKey}&units=metric`;
@@ -44,7 +44,7 @@ function ProjectPortfolio() {
                 console.log(error);
             });
         
-            axios.get(forecastURL)
+        axios.get(forecastURL)
             .then((res) => {
                 setForecastData(res.data);
                 console.log(res.data)
@@ -66,7 +66,11 @@ function ProjectPortfolio() {
                 location={location}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
-                 />
+            />
+            <DisplayData
+                data={data}
+                forecastData={forecastData}
+            />
         </div>
         
     )
