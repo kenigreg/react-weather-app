@@ -1,5 +1,6 @@
 import React from 'react';
-import dayjs from 'dayjs'
+import dayjs from 'dayjs';
+import "./Footer.css"
 
 //Day.js code to get current year
 const now = dayjs();

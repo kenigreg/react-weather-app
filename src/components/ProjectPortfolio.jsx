@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import SearchForm from './SearchForm';
 import DisplayData from './DisplayData';
 import { apiKey } from '../API';
@@ -21,43 +21,38 @@ function ProjectPortfolio() {
 
     const forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${apiKey}&units=metric`;
 
+
+    useEffect(() => {
+        handleSubmit();
+    }, []);
+
     //Get search term from user input and set to state
     const handleChange = (event) => {
-        const location = event.target.value;
-        console.log(location);
 
-        setLocation(location);
+        setLocation(event.target.value);
     }
 
     //function to handle submiting user query
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-
-        console.log("clicked"); 
-
-        axios.get(weatherURL)
-            .then((response) => {
+        try {
+       const response = await axios.get(weatherURL)
                 setData(response.data);
                 console.log(response.data)
-        })
-            .catch(error => {
+        } catch(error) {
                 console.log(error);
-            });
-        
-        axios.get(forecastURL)
-            .then((res) => {
+            }
+
+        try {
+        const res = await axios.get(forecastURL)
                 setForecastData(res.data);
                 console.log(res.data)
-        })
-            .catch(error => {
+        } catch(error) {
                 console.log(error);
-            });
+            }
         
             setLocation('');
     }
-
-    
-
 
     
     return (
