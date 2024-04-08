@@ -10,10 +10,10 @@ function ProjectPortfolio() {
     const [location, setLocation] = useState('');
 
     //State for Current Weather Data
-    const [data, setData] = useState({});
+    const [data, setData] = useState(null);
 
     //State for Weather Forcast
-    const [forecastData, setForecastData] = useState({});
+    const [forecastData, setForecastData] = useState(null);
 
 
     //API Request URLs
@@ -64,7 +64,6 @@ function ProjectPortfolio() {
             />
             <DisplayData
                 data={data}
-                forecastData={forecastData}
             />
         </div>
         
