@@ -5,13 +5,12 @@ function DisplayData(props) {
 
     //Setting Weather data to local storage
     if (props.data){
-        localStorage.setItem('data', JSON.stringify(props.data));
+        localStorage.setItem(`data_${props.data.name}`, JSON.stringify(props.data));
     }
     
-    // Getting Weather data prop local storage
-    const weatherData = JSON.parse(localStorage.getItem('data'))
+    // Getting Weather data from local storage
+    const weatherData = JSON.parse(localStorage.getItem(`data_${props.data.name}`))
 
-    console.log(weatherData);
     
     //Bootstrap Icon Variables
 
@@ -46,7 +45,7 @@ function DisplayData(props) {
     }
 
     // Show loading text until weather data are fetched
-    if (!weatherData) return <div className="display max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">Loading...</div>;
+    if (!weatherData) return <div className="display max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">Loading weather data...</div>;
 
     // Render the Weather details
     return (
