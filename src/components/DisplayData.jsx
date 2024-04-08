@@ -1,5 +1,9 @@
 import React from 'react';
+import dayjs from 'dayjs';
 import "./DisplayData.css";
+
+
+
 
 function DisplayData(props) {
 
@@ -9,8 +13,19 @@ function DisplayData(props) {
     }
     
     // Getting Weather data from local storage
-    const weatherData = JSON.parse(localStorage.getItem(`data_${props.data.name}`))
+    let weatherData;
 
+    if (props.data) {
+        weatherData = JSON.parse(localStorage.getItem(`data_${props.data.name}`))
+    }
+
+    
+    //Day.js code to get current day/time
+    let currentTime;
+    if (weatherData){
+        const now = dayjs(weatherData.dt * 1000);
+        currentTime = now.format('dddd, MMMM D, YYYY h:mm A');
+    }
     
     //Bootstrap Icon Variables
 
@@ -52,6 +67,7 @@ function DisplayData(props) {
        
         <div>
             <div className="display max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">{currentTime}</p>
             <svg className={icon.iconLogo} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
             <path d={icon.d}/>
             </svg>
