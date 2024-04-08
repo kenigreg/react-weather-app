@@ -2,6 +2,16 @@ import React from 'react';
 import "./DisplayData.css";
 
 function DisplayData(props) {
+
+    //Setting Weather data to local storage
+    if (props.data){
+        localStorage.setItem('data', JSON.stringify(props.data));
+    }
+    
+    // Getting Weather data prop local storage
+    const weatherData = JSON.parse(localStorage.getItem('data'))
+
+    console.log(weatherData);
     
     //Bootstrap Icon Variables
 
@@ -14,29 +24,29 @@ function DisplayData(props) {
     const Mist = {iconLogo: "bi bi-cloud-haze-fill", d: "M4 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 2a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m2 2a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M13.405 4.027a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 10H13a3 3 0 0 0 .405-5.973"};
 
     function getIcon() {
-        if (!props.data) {
+        if (!weatherData) {
             icon = null;
         }
-   if (props.data.weather[0].main === "Clouds") {
+   if (weatherData.weather[0].main === "Clouds") {
         icon = Clouds;
-    } else if (props.data.weather[0].main === "Rain") {
+    } else if (weatherData.weather[0].main === "Rain") {
         icon = Rain;
-    } else if (props.data.weather[0].main === "Clear") {
+    } else if (weatherData.weather[0].main === "Clear") {
         icon = Clear;
-    } else if (props.data.weather[0].main === "Smoke") {
+    } else if (weatherData.weather[0].main === "Smoke") {
         icon = Smoke;
-    } else if (props.data.weather[0].main === "Drizzle") {
+    } else if (weatherData.weather[0].main === "Drizzle") {
         icon = Drizzle;
     } else {
         icon = Mist;
         } 
     }
-    if (props.data){
+    if (weatherData){
         getIcon();
     }
 
     // Show loading text until weather data are fetched
-    if (!props.data) return <div className="display max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">Loading...</div>;
+    if (!weatherData) return <div className="display max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">Loading...</div>;
 
     // Render the Weather details
     return (
@@ -46,11 +56,11 @@ function DisplayData(props) {
             <svg className={icon.iconLogo} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
             <path d={icon.d}/>
             </svg>
-            <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">{props.data.name}, {props.data.sys.country} <span>{"  "} {props.data.main.temp} {"°C"}</span></h5>
-            <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">{props.data.weather[0].description}</p>
-            <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">{props.data.main.temp_max} {"  /"} {props.data.main.temp_min} <span>{"  "} Feels like {props.data.main.feels_like} {"°C"}</span></p>
-            <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">Wind: { props.data.wind.speed} m/s</p>
-            <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">Humidity: { props.data.main.humidity} %</p>
+            <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">{weatherData.name}, {weatherData.sys.country} <span>{"  "} {weatherData.main.temp} {"°C"}</span></h5>
+            <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">{weatherData.weather[0].description}</p>
+            <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">{weatherData.main.temp_max} {"  /"} {weatherData.main.temp_min} <span>{"  "} Feels like {weatherData.main.feels_like} {"°C"}</span></p>
+            <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">Wind: { weatherData.wind.speed} m/s</p>
+            <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">Humidity: { weatherData.main.humidity} %</p>
 
             </div>
            
