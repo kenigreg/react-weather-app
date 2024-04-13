@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import SearchForm from './SearchForm';
 import DisplayData from './DisplayData';
+import DisplayForecast from './DisplayForecast';
 import { apiKey } from '../API';
 import axios from 'axios';
+
 
 function ProjectPortfolio() {
 
@@ -64,6 +66,9 @@ function ProjectPortfolio() {
             />
             <DisplayData
                 data={data}
+            />
+            <DisplayForecast
+                forecastData={forecastData}
             />
         </div>
         

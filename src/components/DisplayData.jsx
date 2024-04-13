@@ -7,25 +7,24 @@ import "./DisplayData.css";
 
 function DisplayData(props) {
 
-    //Setting Weather data to local storage
+    //Setting Weather data to local storage & Getting Weather data from local storage
+    let weatherData;
     if (props.data){
         localStorage.setItem(`data_${props.data.name}`, JSON.stringify(props.data));
     }
     
-    // Getting Weather data from local storage
-    let weatherData;
-
     if (props.data) {
         weatherData = JSON.parse(localStorage.getItem(`data_${props.data.name}`))
     }
 
-    
+
     //Day.js code to get current day/time
     let currentTime;
     if (weatherData){
         const now = dayjs(weatherData.dt * 1000);
         currentTime = now.format('dddd, MMMM D, YYYY h:mm A');
     }
+
     
     //Bootstrap Icon Variables
 
@@ -55,12 +54,13 @@ function DisplayData(props) {
         icon = Mist;
         } 
     }
+
     if (weatherData){
         getIcon();
     }
 
     // Show loading text until weather data are fetched
-    if (!weatherData) return <div className="display max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">Loading weather data...</div>;
+    if (!weatherData) return <div className="display max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">Search for weather data...</div>;
 
     // Render the Weather details
     return (
