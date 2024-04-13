@@ -54,7 +54,7 @@ function DisplayData(props) {
         icon = Mist;
         } 
     }
-
+   
     if (weatherData){
         getIcon();
     }
