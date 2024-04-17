@@ -48,7 +48,6 @@ function ProjectPortfolio() {
         try {
         const res = await axios.get(forecastURL)
                 setForecastData(res.data);
-            console.log(res.data);
         } catch(error) {
                 console.log(error);
             }
