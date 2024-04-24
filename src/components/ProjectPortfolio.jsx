@@ -23,6 +23,8 @@ function ProjectPortfolio() {
 
     const forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${apiKey}&units=metric`;
 
+    
+
 
     useEffect(() => {
         handleSubmit();
@@ -40,7 +42,7 @@ function ProjectPortfolio() {
         try {
        const response = await axios.get(weatherURL)
                 setData(response.data);
-                
+                 
         } catch(error) {
                 console.log(error);
             }
