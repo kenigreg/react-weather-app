@@ -25,7 +25,6 @@ function ProjectPortfolio() {
 
     
 
-
     useEffect(() => {
         handleSubmit();
     }, []);
@@ -57,7 +56,15 @@ function ProjectPortfolio() {
             setLocation('');
     }
 
+    // Set current weather data and 5-day forecast weather data to localStorage
+    if (data){
+        localStorage.setItem(`data_${data.name}`, JSON.stringify(data));
+    }
     
+    if (forecastData){
+        localStorage.setItem(`forecastdata_${forecastData.city.name}`, JSON.stringify(forecastData));
+    }
+
     return (
         <div>
             <SearchForm

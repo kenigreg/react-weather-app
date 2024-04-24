@@ -14,20 +14,18 @@ dayjs.extend(isBetween);
 
 function DisplayForecast(props) {
 
+    //state for selected date to filter data
     const [value, setValue] = useState([
         dayjs('17-04-2022'),
         dayjs('21-04-2022'),
     ]);
 
+    // State for filtered data
     const [isFiltered, setIsFiltered] = useState(false);
 
   
-
-    //Setting Weather data to local storage & Getting Weather data from local storage
+    //Getting Weather data from local storage
      let forecastWeatherData;
-    if (props.forecastData){
-        localStorage.setItem(`forecastdata_${props.forecastData.city.name}`, JSON.stringify(props.forecastData));
-    }
     
     if (props.forecastData) {
         forecastWeatherData = JSON.parse(localStorage.getItem(`forecastdata_${props.forecastData.city.name}`))
@@ -37,25 +35,24 @@ function DisplayForecast(props) {
     //Filter forecast data based on user date selection
     
     let date1, date2;
-    //variable to store filtered data
-    const forecastWeatherData2 = [];
 
     if (value) {
     date1 = value[0].format('YYYY-MM-DD')
     date2 = value[1].format('YYYY-MM-DD')
     }
     
-    
+    //variable to store filtered data
+    const forecastWeatherData2 = [];
+
     if (isFiltered) {
         forecastWeatherData.list.filter((item) => {
           const itemDate = dayjs(item.dt * 1000).format('YYYY-MM-DD');
-        
+        //filter through the data and compare if date in each data is within the user input
             if (dayjs(itemDate).isBetween(date1, date2, null, '[]')) {
                 forecastWeatherData2.push(item);
             }
         })
     }
-    
     
     // Show waiting for data until weather data are fetched
     if (!forecastWeatherData) return (<div className="relative overflow-x-auto shadow-md sm:rounded-lg">

@@ -6,17 +6,14 @@ import "./DisplayData.css";
 
 
 function DisplayData(props) {
-
-    //Setting Weather data to local storage & Getting Weather data from local storage
-    let weatherData;
-    if (props.data){
-        localStorage.setItem(`data_${props.data.name}`, JSON.stringify(props.data));
-    }
     
-    if (props.data) {
-        weatherData = JSON.parse(localStorage.getItem(`data_${props.data.name}`))
+    // Getting Weather data from local storage
+    let weatherData
+    
+    if(props.data) {
+        weatherData = JSON.parse(localStorage.getItem(`data_${props.data.name}`));
     }
-
+   
 
     //Day.js code to get current day/time
     let currentTime;
