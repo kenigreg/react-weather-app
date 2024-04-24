@@ -21,7 +21,7 @@ function DisplayForecast(props) {
 
     const [isFiltered, setIsFiltered] = useState(false);
 
-    console.log(value, isFiltered);
+  
 
     //Setting Weather data to local storage & Getting Weather data from local storage
      let forecastWeatherData;
@@ -55,7 +55,6 @@ function DisplayForecast(props) {
             }
         })
     }
-    
     
     
     // Show waiting for data until weather data are fetched
