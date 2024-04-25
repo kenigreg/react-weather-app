@@ -16,8 +16,8 @@ function DisplayForecast(props) {
 
     //state for selected date to filter data
     const [value, setValue] = useState([
-        dayjs('17-04-2022'),
-        dayjs('21-04-2022'),
+        dayjs(''),
+        dayjs(''),
     ]);
 
     // State for filtered data
@@ -50,6 +50,8 @@ function DisplayForecast(props) {
         //filter through the data and compare if date in each data is within the user input
             if (dayjs(itemDate).isBetween(date1, date2, null, '[]')) {
                 forecastWeatherData2.push(item);
+            } else {
+                return forecastWeatherData;
             }
         })
     }
