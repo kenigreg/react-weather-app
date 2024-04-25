@@ -1,3 +1,8 @@
-footer {
-    margin-bottom: 2px;
+
+.alignFooter {
+    position: fixed !important;
+    bottom: 0 !important;
+    width: 98%;
+    margin-top: 5px !important;
+    margin-bottom: 2px !important;
 }

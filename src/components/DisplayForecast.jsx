@@ -16,8 +16,8 @@ function DisplayForecast(props) {
 
     //state for selected date to filter data
     const [value, setValue] = useState([
-        dayjs(''),
-        dayjs(''),
+        dayjs('17-04-2022'),
+        dayjs('21-04-2022'),
     ]);
 
     // State for filtered data
@@ -29,7 +29,7 @@ function DisplayForecast(props) {
     
     if (props.forecastData) {
         forecastWeatherData = JSON.parse(localStorage.getItem(`forecastdata_${props.forecastData.city.name}`))
-        console.log(forecastWeatherData);
+       
     }
 
     //Filter forecast data based on user date selection
@@ -55,6 +55,29 @@ function DisplayForecast(props) {
             }
         })
     }
+
+    //get current date
+    const now = dayjs();
+    const currentDate = now.format('YYYY-MM-DD');
+    const endDate = now.add(5, 'day').format('YYYY-MM-DD');
+    
+    
+
+    //function to handle user input to filter weather forecast data by date
+    const handleChange = ((newValue) => {
+        const userDate1 = newValue[0].format('YYYY-MM-DD');
+        const userDate2 = newValue[1].format('YYYY-MM-DD');
+        
+        if (!dayjs(userDate1).isBetween(currentDate, endDate, null, '[]') && !dayjs(userDate2).isBetween(currentDate, endDate, null, '[]')) {
+            alert("please select a date between today and 5 days ahead");
+        } else
+        {
+        setValue(newValue);
+            setIsFiltered(true);
+        }
+    })
+
+
     
     // Show waiting for data until weather data are fetched
     if (!forecastWeatherData) return (<div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -80,7 +103,7 @@ function DisplayForecast(props) {
         <SingleInputDateRangeField
             label="Filter by date"
             value={value}
-            onChange={(newValue) => { setValue(newValue); setIsFiltered(true); }}             
+            onChange={handleChange}             
         />
       </DemoContainer>
     </LocalizationProvider>

@@ -57,7 +57,7 @@ function DisplayData(props) {
     }
 
     // Show loading text until weather data are fetched
-    if (!weatherData) return <div className="display max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">Search for weather data...</div>;
+    if (!weatherData) return <div className="display max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">Waiting for weather data...</div>;
 
     // Render the Weather details
     return (
