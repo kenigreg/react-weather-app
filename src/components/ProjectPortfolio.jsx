@@ -74,6 +74,7 @@ function ProjectPortfolio() {
             />
             <DisplayData
                 data={data}
+                location={location}
             />
             <DisplayForecast
                 forecastData={forecastData}

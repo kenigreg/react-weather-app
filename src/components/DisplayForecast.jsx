@@ -68,7 +68,7 @@ function DisplayForecast(props) {
         const userDate1 = newValue[0].format('YYYY-MM-DD');
         const userDate2 = newValue[1].format('YYYY-MM-DD');
         
-        if (!dayjs(userDate1).isBetween(currentDate, endDate, null, '[]') && !dayjs(userDate2).isBetween(currentDate, endDate, null, '[]')) {
+        if (!(dayjs(userDate1).isBetween(currentDate, endDate, null, '[]')) || !(dayjs(userDate2).isBetween(currentDate, endDate, null, '[]'))) {
             alert("please select a date between today and 5 days ahead");
         } else
         {
