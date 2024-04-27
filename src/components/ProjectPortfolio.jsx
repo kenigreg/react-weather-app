@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import SearchForm from './SearchForm';
 import DisplayData from './DisplayData';
 import DisplayForecast from './DisplayForecast';
-import { apiKey } from '../API';
+import { apiKey } from '../API.js';
 import axios from 'axios';
 
 
