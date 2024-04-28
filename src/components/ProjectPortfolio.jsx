@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import SearchForm from './SearchForm';
 import DisplayData from './DisplayData';
 import DisplayForecast from './DisplayForecast';
@@ -24,10 +24,6 @@ function ProjectPortfolio() {
     const forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${apiKey}&units=metric`;
 
     
-
-    useEffect(() => {
-        handleSubmit();
-    }, []);
 
     //Get search term from user input and set to state
     const handleChange = (event) => {
