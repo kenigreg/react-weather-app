@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 import dayjs from 'dayjs';
 import 'dayjs/locale/en-gb';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { SingleInputDateRangeField } from '@mui/x-date-pickers-pro/SingleInputDateRangeField';
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+//import { SingleInputDateRangeField } from '@mui/x-date-pickers-pro/SingleInputDateRangeField';
 import { Container } from '@mui/material';
 import "./DisplayForecast.css";
 
@@ -97,14 +98,13 @@ function DisplayForecast(props) {
     <div>
     <Container maxWidth="sm"> 
     <LocalizationProvider className="dateRange" dateAdapter={AdapterDayjs} adapterLocale="en-gb">
-      <DemoContainer
-        components={['SingleInputDateRangeField', 'SingleInputDateRangeField']}
-      >
-        <SingleInputDateRangeField
-            label="Filter by date"
+    <DemoContainer components={['DateRangePicker', 'DateRangePicker']}>
+        <DemoItem label="Filter by date" component="DateRangePicker">
+          <DateRangePicker
             value={value}
-            onChange={handleChange}             
-        />
+            onChange={handleChange}
+          />
+        </DemoItem>
       </DemoContainer>
     </LocalizationProvider>
     </Container>
